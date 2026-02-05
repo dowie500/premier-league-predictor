@@ -1,0 +1,63 @@
+.app-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 4rem;
+  text-align: center;
+  position: relative;
+}
+
+.logo-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--color-primary);
+  background: var(--color-accent);
+  padding: 12px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px rgba(0, 255, 133, 0.4);
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -2px;
+  line-height: 1.1;
+}
+
+.title span {
+  color: var(--color-accent);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-dim);
+  margin-top: 1rem;
+  font-weight: 400;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .app-container {
+    padding: 1rem;
+  }
+}
