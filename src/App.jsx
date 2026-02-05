@@ -30,7 +30,7 @@ function App() {
 
       <footer className="footer">
         <a
-          href="./architecture/structurizr-SystemContext.html"
+          href="./architecture/index.html"
           target="_blank"
           rel="noopener noreferrer"
           className="arch-link"
