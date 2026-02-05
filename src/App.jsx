@@ -27,6 +27,17 @@ function App() {
           <MatchList onSelect={setSelectedMatch} />
         )}
       </main>
+
+      <footer className="footer">
+        <a
+          href="./architecture/structurizr-SystemContext.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="arch-link"
+        >
+          View System Architecture
+        </a>
+      </footer>
     </div>
   )
 }
