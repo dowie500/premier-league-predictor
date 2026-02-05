@@ -37,6 +37,7 @@ jobs:
       if: success() || failure() # always run even if the previous step fails
       with:
         report_paths: 'test-results.xml'
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build Project
       run: npm run build
