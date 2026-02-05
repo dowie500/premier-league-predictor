@@ -32,6 +32,7 @@ jobs:
     - name: Generate C4 Model Documentation
       # Run structurizr-cli via Docker to export DSL to HTML
       run: |
+        mkdir -p dist/architecture
         docker run --rm -v ${{ github.workspace }}:/usr/local/structurizr structurizr/cli export -workspace docs/architecture/workspace.dsl -format html -output dist/architecture
 
     - name: Upload Build Artifacts
