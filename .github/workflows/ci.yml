@@ -28,7 +28,12 @@ jobs:
 
     - name: Build Project
       run: npm run build
-      
+
+    - name: Generate C4 Model Documentation
+      # Run structurizr-cli via Docker to export DSL to HTML
+      run: |
+        docker run --rm -v ${{ github.workspace }}:/usr/local/structurizr structurizr/cli export -workspace docs/architecture/workspace.dsl -format html -output dist/architecture
+
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
