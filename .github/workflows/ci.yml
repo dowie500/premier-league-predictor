@@ -43,10 +43,25 @@ jobs:
       run: npm run build
 
     - name: Generate C4 Model Documentation
-      # Run structurizr-cli via Docker to export DSL to HTML
+      # 1. Export to PlantUML using Structurizr CLI
+      # 2. Convert PlantUML to SVG using PlantUML
+      # 3. Create simple index.html
       run: |
         mkdir -p dist/architecture
-        docker run --rm -v ${{ github.workspace }}:/usr/local/structurizr structurizr/cli export -workspace docs/architecture/workspace.dsl -format html -output dist/architecture
+        docker run --rm -v ${{ github.workspace }}:/usr/local/structurizr structurizr/cli export -workspace docs/architecture/workspace.dsl -format plantuml -output dist/architecture
+        
+        # Convert all .puml files to .svg
+        # Mounting dist/architecture to /data so prompt works easily
+        docker run --rm -v ${{ github.workspace }}/dist/architecture:/data plantuml/plantuml -tsvg "/data/*.puml"
+
+        # Create Index HTML
+        cd dist/architecture
+        echo "<html><head><title>Architecture</title><style>body{font-family:sans-serif;padding:20px;} img{max-width:100%;border:1px solid #ccc;margin-bottom:20px;}</style></head><body>" > index.html
+        echo "<h1>System Architecture</h1>" >> index.html
+        echo "<h2>System Context</h2><img src='structurizr-SystemContext.svg'>" >> index.html
+        echo "<h2>Container View</h2><img src='structurizr-ContainerView.svg'>" >> index.html
+        echo "<h2>Component View</h2><img src='structurizr-ComponentView.svg'>" >> index.html
+        echo "</body></html>" >> index.html
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
